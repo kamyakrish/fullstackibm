@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # Update to v4 to support Node.js 20
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -27,20 +27,19 @@ jobs:
         pwd
         find . -name "*.py" -exec flake8 {} +
         echo "Linted all the python files successfully"
-  
+
   lint_js:
     name: Lint JavaScript Files
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # Update to v4 to support Node.js 20
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4  # Update to v4 to support Node.js 20
       with:
-        node-version: 14
+        node-version: 20  # Use Node.js version 20
     - name: Install JSHint
       run: npm install jshint --global
     - name: Run Linter
       run: |
-        find ./server/database -name "*.js" -exec jshint {} +
-        echo "Linted all the js files successfully"
+        find ./server/database -name "
